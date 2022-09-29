@@ -1,47 +1,39 @@
 import turtle as t 
 import random as r 
 
-#corredores
-vermelho = t.Turtle()
-verde = t.Turtle()
-azul = t.Turtle()
-amarelo = t.Turtle()
-roxo = t.Turtle()
-
-# configurando os corredores
-vermelho.penup()
-vermelho.shape('turtle')
-vermelho.shapesize(2)
-verde.penup()
-verde.shape('turtle')
-verde.shapesize(2)
-azul.penup()
-azul.shape('turtle')
-azul.shapesize(2)
-amarelo.penup()
-amarelo.shape('turtle')
-amarelo.shapesize(2)
-roxo.penup()
-roxo.shape('turtle')
-roxo.shapesize(2)
-
 #pista de corrida
 pista = t.Screen()
 pista.title('CORRIDA DE TARTARUGA')
 pista.setup(1500,500)
 pista.bgpic('pixel fundo gif.gif')
 
-#posicionar os corredores e dar o shape para eles
-corredores = [vermelho,verde,azul,amarelo,roxo]
-cores = ['red','green','blue','yellow','purple']
-posição = [0,80,-80,160,-160,320]
-item = -1 
-for corredor in corredores:
-    item +=1
-    corredor.color(cores[item])
-    corredor.setposition(-700,posição[item])
+comece = False
+# configurando os corredores
 
+cores = ['red','green','blue','yellow','purple']
+posição = [0,80,-80,160,-160]
+participantes = []
+for corredor in range(5):
+    corredores = t.Turtle(shape='turtle')
+    corredores.penup()
+    corredores.color(cores[corredor])
+    corredores.goto(x=-740,y=posição[corredor])
+    participantes.append(corredores)
+
+
+aposta = pista.textinput(title='*****Faça sua Aposta*****',prompt='Qual cor vencerá a corrida: ')
+if aposta:
+    comece = True
 #programando a corrida com biblioteca random 
+
+while comece is True: 
+    for participante in participantes:
+        if participante.xcor()> 730:
+            print(participante.pencolor())
+    for participante in participantes:
+        velocidade = r.randint(0,10)
+        participante.fd(velocidade)
+
 
 
 
