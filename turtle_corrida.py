@@ -7,7 +7,7 @@ pista.title('CORRIDA DE TARTARUGA')
 pista.setup(1500,500)
 pista.bgpic('pixel fundo gif.gif')
 
-comece = False
+correr = False
 # configurando os corredores
 
 cores = ['red','green','blue','yellow','purple']
@@ -20,16 +20,27 @@ for corredor in range(5):
     corredores.goto(x=-740,y=posição[corredor])
     participantes.append(corredores)
 
-
-aposta = pista.textinput(title='*****Faça sua Aposta*****',prompt='Qual cor vencerá a corrida: ')
-if aposta:
-    comece = True
+quantos_players = int(pista.textinput(title='*****Quantos Jogadores*****',prompt='número de jogadores'))
+apostas = []
+for players in range(quantos_players):
+    aposta = pista.textinput(title='****Faça sua Aposta*****',prompt='Qual cor vencerá a corrida: ')
+    apostas.append(aposta)
+if apostas:
+    correr = True
 #programando a corrida com biblioteca random 
 
-while comece is True: 
+while correr is True: 
     for participante in participantes:
-        if participante.xcor()> 730:
-            print(participante.pencolor())
+        
+        if participante.xcor()> 720:
+            correr = False
+            ganhador = participante.pencolor()
+            for aposta in apostas:
+                if ganhador == aposta: 
+                    n = apostas.index()
+                    print(f'Player {n} venceu, cor {ganhador} é o vencedor')
+                else:
+                    print(f'Player {n} perdeu... {ganhador} é o vencedor')
     for participante in participantes:
         velocidade = r.randint(0,10)
         participante.fd(velocidade)
