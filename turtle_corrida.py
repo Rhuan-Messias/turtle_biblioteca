@@ -5,7 +5,7 @@ import random as r
 pista = t.Screen()
 pista.title('CORRIDA DE TARTARUGA')
 pista.setup(1500,500)
-pista.bgpic('pixel fundo gif.gif')
+pista.bgpic('Estrada jgif.gif')
 
 correr = False
 # configurando os corredores
@@ -35,12 +35,12 @@ while correr is True:
         if participante.xcor()> 720:
             correr = False
             ganhador = participante.pencolor()
-            for aposta in apostas:
+            for n,aposta in enumerate(apostas):
+                
                 if ganhador == aposta: 
-                    n = apostas.index()
-                    print(f'Player {n} venceu, cor {ganhador} é o vencedor')
+                    print(f'Player {n+1} venceu, cor {ganhador} é o vencedor')
                 else:
-                    print(f'Player {n} perdeu... {ganhador} é o vencedor')
+                    print(f'Player {n+1} perdeu... {ganhador} é o vencedor')
     for participante in participantes:
         velocidade = r.randint(0,10)
         participante.fd(velocidade)
