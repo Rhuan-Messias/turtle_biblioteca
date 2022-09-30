@@ -1,5 +1,7 @@
 import turtle as t 
 
+
+
 #Objetos
 pytera = t.Turtle()
 pyterinha = t.Turtle()
